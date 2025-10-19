@@ -1,5 +1,7 @@
 Conquest
+
 Creator: Jake West
+
 Text-based adventure game written in Python. Played in the terminal.
 
 ************************************************************************************************
