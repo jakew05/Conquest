@@ -11,6 +11,11 @@ combat = False
 gameOver = False
 currentEnemy = None
 
+# combat objects
+enemyActionList = []
+enemyActionCounter = 0
+currentWeapon = None
+
 # preference trackers
 keepHelpOn = True
 keepInvOn = True

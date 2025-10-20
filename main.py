@@ -48,6 +48,11 @@ while variables.gameOver == False:
             functions.invalidInput()
         elif variables.action.split()[0] == 'fight':
             enemyChoice = variables.action.split()[1]
+            if functions.checkValidEnemy(enemyChoice):
+                variables.combat = True
+                variables.currentEnemy = functions.getCurrentEnemy(enemyChoice)
+            else:
+                functions.invalidInput()
 
         elif variables.action == 'inv':
             functions.displayInventory()
@@ -75,9 +80,10 @@ while variables.gameOver == False:
                 functions.displayCombatActions()
 
             elif variables.action == 'strike':
-                pass
+                variables.currentEnemy.health -= variables.currentWeapon.damage
 
             functions.enemyFight(variables.currentEnemy)
+            variables.action = input("what will you do?: ")
 
     # check if player obtained key item
     if variables.mapObtained == False and functions.checkInventoryForKeyItem('map'):
@@ -86,6 +92,7 @@ while variables.gameOver == False:
 
     # check if player has selected a weapon in white hall and move them to field of graves
     if variables.room == 'white_hall' and variables.inventory['weapons']:
+        variables.currentWeapon = variables.inventory['weapons'][0]
         variables.room = 'field_of_graves'
 
     # display world text

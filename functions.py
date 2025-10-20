@@ -6,7 +6,7 @@ import drawEnemies
 import worldContents
 import worldConnections
 import worldEnemies
-import textwrap
+import classes
 
 def clearTerminal():
     # For Windows
@@ -31,7 +31,7 @@ def displayActionList():
     
 def displayCombatActions():
     print("----Combat Actions-------------")
-    print("'strike' strike an enemy while in combat\n'heal' consume 2 food to heal 5 health" \
+    print("'strike' strike an enemy while in combat" \
     "\n'item' use an item from your inventory")
     print("-------------------------------")
 
@@ -135,6 +135,22 @@ def displayMap():
 
 def displayLocation():
     pass
+
+def getCurrentEnemy(enemyChoice):
+    for enemy in worldEnemies.world[variables.room][variables.subroom]:
+        if enemy.type == enemyChoice:
+            return enemy
+        else:
+            dummy = classes.enemy(1, 1, 'dummy')
+            return dummy
+
+def generateActionList():
+    for i in range(0,100):
+        val = random.randint(0,1)
+        if val == 0:
+            variables.enemyActionList.append('attack')
+        if val == 1: 
+            variables.enemyActionList.append('heal')
 
 def enemyFight(enemy):
     print("----Combat----------------------------")

@@ -6,6 +6,7 @@ slime = classes.enemy(15, 3, 'slime')
 wh = {
 }
 fog = {
+    'crate' : [skeleton]
 }
 df = {
 }
