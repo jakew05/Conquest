@@ -18,6 +18,9 @@ while variables.begin != 'y' and variables.begin != 'n':
 functions.clearTerminal()
 
 while variables.gameOver == False:
+    # remind player to ask for help
+    print("type 'help' for a list of actions")
+
     # perform actions
 
     # basic actions
@@ -50,6 +53,7 @@ while variables.gameOver == False:
             enemyChoice = variables.action.split()[1]
             if functions.checkValidEnemy(enemyChoice):
                 variables.combat = True
+                variables.action = 'help'
                 variables.currentEnemy = functions.getCurrentEnemy(enemyChoice)
             else:
                 functions.invalidInput()
@@ -75,15 +79,20 @@ while variables.gameOver == False:
 
     # combat actions
     if variables.action != None and variables.combat == True:
-        while variables.combat:
+        while variables.combat == True:
+            functions.clearTerminal()
+
             if variables.action == 'help':
                 functions.displayCombatActions()
-
             elif variables.action == 'strike':
                 variables.currentEnemy.health -= variables.currentWeapon.damage
+            else:
+                variables.action = 'help'
+                continue
 
             functions.enemyFight(variables.currentEnemy)
-            variables.action = input("what will you do?: ")
+            if variables.currentEnemy:
+                variables.action = input("an enemy attacks: what will you do?: ")
 
     # check if player obtained key item
     if variables.mapObtained == False and functions.checkInventoryForKeyItem('map'):

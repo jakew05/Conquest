@@ -10,14 +10,18 @@ class weapon():
         enemy.health -= self.damage
         self.durability -= 1
 
-    def heal(self, health):
-        health += self.heal
+    def heal(self, playerHealth):
+        playerHealth += self.heal
 
 class enemy():
-    def __init__(self, health, attack, type):
+    def __init__(self, health, healAmount, attack, type):
         self.health = health
+        self.healAmount = healAmount
         self.attack = attack
         self.type = type
+
+    def heal(self):
+        self.health += self.healAmount
 
 class consumableWeapon():
     def __init__(self, name, damage, size, type):

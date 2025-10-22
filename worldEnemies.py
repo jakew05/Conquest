@@ -1,7 +1,7 @@
 import classes
 
-skeleton = classes.enemy(20, 4, 'skeleton')
-slime = classes.enemy(15, 3, 'slime')
+skeleton = classes.enemy(20, 4, 2, 'skeleton')
+slime = classes.enemy(15, 3, 3, 'slime')
 
 wh = {
 }

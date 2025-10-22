@@ -1,5 +1,6 @@
 import os
 import random
+import math
 import variables
 import worldtext
 import drawEnemies
@@ -23,7 +24,7 @@ def displayWorldText():
 def displayActionList():
     print("----Basic Actions--------------")
     print("'inv' view inventory\n'stat' view your stats\n'grab [item]' add item to your inventory\n"
-        "'inspect [object]' take closer look at object\n'return' return to where you were\n" \
+        "'fight [enemy]' fight an enemy\n'inspect [object]' take closer look at object\n'return' return to where you were\n" \
         "'go [region]' go to new region on map (ex: go dead_forest)")
     if variables.mapObtained == True:
         print("'map' view map (once acquired)\n'help' display action list")
@@ -146,21 +147,42 @@ def getCurrentEnemy(enemyChoice):
 
 def generateActionList():
     for i in range(0,100):
-        val = random.randint(0,1)
+        val = random.randint(0,2)
         if val == 0:
             variables.enemyActionList.append('attack')
         if val == 1: 
             variables.enemyActionList.append('heal')
+        if val == 2:
+            variables.enemyActionList.append('crit')
 
 def enemyFight(enemy):
+    generateActionList()
     print("----Combat----------------------------")
+    # check which enemy to draw
     if enemy.type == 'skeleton':
         drawEnemies.drawSkeleton()
+    if enemy.type == 'slime':
+        drawEnemies.drawSlime()
+
+    enemyAction = variables.enemyActionList.pop()
+    if enemyAction == 'attack':
+        variables.stats['health'] -= enemy.attack
+        print(f"Your opponent dealt you {enemy.attack} damage.")
+    elif enemyAction == 'heal':
+        enemy.heal()
+        print(f"Your opponent healed {enemy.healAmount} HP.")
+    elif enemyAction == 'crit':
+        print(f"Your opponent dealt you {math.ceil(enemy.attack * 3)} damage.")
+        variables.stats['health'] -= math.ceil(enemy.attack * 3)
+    
+    print("--------------------------------------")
     print(f"ENEMY HEALTH: {enemy.health} -- ENEMY ATTACK: {enemy.attack}")
     print(f"YOUR HEALTH: {variables.stats['health']} -- MAX HEALTH: {variables.maxHealth}")
     if enemy.health <= 0:
         goldReward = random.randint(20,50)
         variables.stats['gold'] += goldReward
-        variables.combat == False
+        variables.combat = False
+        variables.currentEnemy = None
+        print("--------------------------------------")
         print(f"enemy defeated, you earned {goldReward} gold.")
     print("--------------------------------------")

@@ -21,7 +21,7 @@ fog = {
 
     'crate': textwrap.fill("as you approach the crate, you see that it is long and low to the ground. You pry off the top of the crate"
     " and find a man inside. He is without skin, muscle, or mind, but you can feel his life, clinging with what strength"
-    " it has left to its boney frame. You feel the fallen soldier call you to battle. Beside the crate there is a small stash of weapons:", 50),
+    " it has left to its boney frame. You feel the fallen soldier call you to battle [enemy: skeleton]. Beside the crate there is a small stash of weapons.", 50),
 
     'monument': textwrap.fill("A monument stands tall before you. Inscribed upon the weathered stone is a short dedication:\n\n"
     "'Our lands, corrupt. Our minds, troubled and tortured. Our kingdom, threatened by those of the Spire. "
