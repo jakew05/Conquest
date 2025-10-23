@@ -11,7 +11,7 @@ class weapon():
         self.durability -= 1
 
     def heal(self, playerHealth):
-        playerHealth += self.heal
+        playerHealth += self.healAmount
 
 class enemy():
     def __init__(self, health, healAmount, attack, type):

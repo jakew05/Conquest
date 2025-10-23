@@ -1,3 +1,5 @@
+import items
+
 # game control variables
 begin = None
 action = None
@@ -14,7 +16,7 @@ currentEnemy = None
 # combat objects
 enemyActionList = []
 enemyActionCounter = 0
-currentWeapon = None
+currentWeapon = items.fists
 
 # preference trackers
 keepHelpOn = True
@@ -38,8 +40,12 @@ inventory = {
 }
 
 stats = {
-    'attack' : 10,
+    'weapon' : currentWeapon.name,
+    'weapon damage' : currentWeapon.damage,
+    'weapon durability' : currentWeapon.durability,
     'defense' : 0,
     'health' : 50,
-    'gold' : 0
+    'max health' : maxHealth,
+    'gold' : 0,
+    'max gold' : maxGold
 }

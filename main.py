@@ -86,6 +86,8 @@ while variables.gameOver == False:
                 functions.displayCombatActions()
             elif variables.action == 'strike':
                 variables.currentEnemy.health -= variables.currentWeapon.damage
+            elif variables.action == 'item':
+                functions.useConsumable()
             else:
                 variables.action = 'help'
                 continue

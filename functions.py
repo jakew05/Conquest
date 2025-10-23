@@ -33,8 +33,24 @@ def displayActionList():
 def displayCombatActions():
     print("----Combat Actions-------------")
     print("'strike' strike an enemy while in combat" \
-    "\n'item' use an item from your inventory")
+    "\n'item' use an item from your inventory\n'heal' restore your health")
     print("-------------------------------")
+
+def useConsumable():
+    displayInventory()
+    itemChoice = input("which item would you like to use? (or 'cancel'): ")
+    if itemChoice == 'cancel':
+        return
+    for item in variables.consumables:
+        if item == itemChoice:
+            index = variables.consumables.index(item)
+            if item.type == 'consumable-heal':
+                variables.stats['health'] += item.healAmount
+                variables.consumables.pop(index)
+            elif item.type == 'consumable-wpn':
+                variables.currentEnemy.health -= item.damage
+                variables.consumables.pop(index)
+            return
 
 def displayStats():
     print("----Stats----------------------")
@@ -63,7 +79,7 @@ def grabItem(itemToGrab):
         if item.name == itemToGrab:
             if item.type == 'weapon':
                 variables.weapons.append(item)
-            elif item.type == 'consumable':
+            elif item.type == 'consumable-wpn' or item.type == 'consumable-heal':
                 variables.consumables.append(item)
             elif item.type == 'keyItem':
                 variables.keyItems.append(item)
