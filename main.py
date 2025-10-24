@@ -47,6 +47,17 @@ while variables.gameOver == False:
             else:
                 functions.invalidInput()
 
+        elif variables.action.replace(" ", "") == 'equip':
+            functions.invalidInput()
+        elif variables.action.split()[0] == 'equip':
+            weaponChoice = variables.action.split()[1]
+            if functions.checkValidWeapon(weaponChoice):
+                variables.currentWeapon = functions.getValidWeapon(weaponChoice)
+                functions.updateWeaponStats()
+                print(f"*** equipped {variables.currentWeapon.name} ***")
+            else:
+                functions.invalidInput()
+
         elif variables.action == 'fight':
             functions.invalidInput()
         elif variables.action.split()[0] == 'fight':
@@ -104,6 +115,7 @@ while variables.gameOver == False:
     # check if player has selected a weapon in white hall and move them to field of graves
     if variables.room == 'white_hall' and variables.inventory['weapons']:
         variables.currentWeapon = variables.inventory['weapons'][0]
+        functions.updateWeaponStats()
         variables.room = 'field_of_graves'
 
     # display world text

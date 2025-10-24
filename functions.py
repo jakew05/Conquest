@@ -58,12 +58,20 @@ def displayStats():
         print(stat + " | " + str(variables.stats[stat]))
     print("-------------------------------")
 
+def updateWeaponStats():
+    variables.stats['weapon'] = variables.currentWeapon.name
+    variables.stats['weapon damage'] = variables.currentWeapon.damage
+    variables.stats['weapon durability'] = variables.currentWeapon.durability
+
 def displayInventory():
     print("----Inventory------------------")
     for list in variables.inventory:
         print(f"{list}:")
         for item in variables.inventory[list]:
-            print(f" ~ {item.name}")
+            if list == 'weapons' and item == variables.currentWeapon:
+                print(f" @ {item.name}")
+            else:
+                print(f" ~ {item.name}")
     print("-------------------------------")
 
 def displayLoot(loot):
@@ -95,6 +103,17 @@ def checkValidObject(room, objectChoice):
         if object == objectChoice:
             return True
     return False
+
+def checkValidWeapon(weaponChoice):
+    for weapon in variables.weapons:
+        if weapon.name == weaponChoice:
+            return True
+    return False
+
+def getValidWeapon(weaponChoice):
+    for weapon in variables.weapons:
+        if weapon.name == weaponChoice:
+            return weapon
 
 def checkValidItem(itemChoice):
     itemList = worldContents.world[variables.room][variables.subroom]
