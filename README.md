@@ -10,8 +10,11 @@ Embark on a jounrey across the Corrupted Lands once more, and reclaim your place
 Your fate awaits you at the Spire's peak...
 ************************************************************************************************
 
-How to run (VSCode):
+Intructions on how to run:
+VSCode:
 VSCode -> new folder -> new terminal -> git clone https_web_url.git -> run the game from 'main.py'
+Linux Terminal:
+New terminal -> new directory -> git clone https_web_url.git -> cd Conquest -> python3 main.py
 
 How to play:
 This game is played in your terminal, type 'help' at any point for a list of actions.
