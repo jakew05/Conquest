@@ -1,18 +1,22 @@
 import os
 import random
 import math
-import variables
-import worldtext
-import drawEnemies
-import worldContents
-import worldConnections
-import worldEnemies
-import classes
+import world.variables as variables
+import world.worldtext as worldtext
+import function_files.drawEnemies as drawEnemies
+import world.worldContents as worldContents
+import world.worldConnections as worldConnections
+import world.worldEnemies as worldEnemies
+import item_files.classes as classes
 
 def clearTerminal():
     # For Windows
     if os.name == 'nt':
         _ = os.system('cls')
+    # For Linux / MacOS
+    else:
+        _ = os.system('clear')
+    
 
 # shows text for the current area
 def displayWorldText():
@@ -23,11 +27,11 @@ def displayWorldText():
 # displays list of actions the player can take (when player types 'help')
 def displayActionList():
     print("----Basic Actions--------------")
-    print("'inv' view inventory\n'stat' view your stats\n'grab [item]' add item to your inventory\n"
-        "'fight [enemy]' fight an enemy\n'inspect [object]' take closer look at object\n'return' return to where you were\n" \
+    print("'inv' view your inventory\n'stat' view your stats\n'grab [item]' add item to your inventory\n'equip [weapon]' equip a weapon\n"
+        "'fight [enemy]' fight an enemy\n'inspect [object]' take closer look at object\n'return' return from an object to the main area\n" \
         "'go [region]' go to new region on map (ex: go dead_forest)")
     if variables.mapObtained == True:
-        print("'map' view map (once acquired)\n'help' display action list")
+        print("'map' view the map\n")
     print("-------------------------------")
     
 def displayCombatActions():
@@ -123,9 +127,10 @@ def checkValidItem(itemChoice):
     return False
 
 def checkValidEnemy(enemyChoice):
-    for enemy in worldEnemies.world[variables.room][variables.subroom]:
-        if enemy.type == enemyChoice:
-            return True
+    if worldEnemies.world[variables.room][variables.subroom]:
+        for enemy in worldEnemies.world[variables.room][variables.subroom]:
+            if enemy.type == enemyChoice:
+                return True
     return False
 
 def checkInventoryForKeyItem(itemToCheckName):
@@ -218,6 +223,7 @@ def enemyFight(enemy):
         variables.stats['gold'] += goldReward
         variables.combat = False
         variables.currentEnemy = None
+        worldEnemies.world[variables.room][variables.subroom].remove(enemy)
         print("--------------------------------------")
         print(f"enemy defeated, you earned {goldReward} gold.")
     print("--------------------------------------")

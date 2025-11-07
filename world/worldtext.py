@@ -1,4 +1,3 @@
-import worldContents
 import textwrap
 
 # sub world-dictionaries
@@ -30,7 +29,15 @@ fog = {
     "the monument:", 50)
 }
 df = {
-    'main' : textwrap.fill("welcome to the dead forest", 50)
+    'main' : textwrap.fill("After traveling for hours, you find that you have become lost in a thick," \
+    "misty wilderness. The trees creek and whisper as you tread on course dirt, and you cant shake the feeling" \
+    "that something is watching you. You decide to stop so you don't get more lost: before you there is a hollowed" \
+    "tree trunk, to your left, there is a small pit filled with a green, gellatinous substance. [objects: trunk, pit]", 50),
+
+    'trunk': textwrap.fill("You approach the hollow trunk, inside you find a small stach of items:", 50),
+
+    'pit' : textwrap.fill("You approach the pit, and the slimy substance inside it suddenly come to life!" \
+    " The slime charges toward you, will you fight it? [enemy: slime]", 50)
 }
 tr = {}
 br = {}

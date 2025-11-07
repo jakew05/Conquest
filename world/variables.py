@@ -1,4 +1,4 @@
-import items
+import item_files.items as items
 
 # game control variables
 begin = None

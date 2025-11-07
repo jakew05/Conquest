@@ -1,7 +1,7 @@
 import sys
-import functions
-import variables
-import worldContents
+import function_files.functions as functions
+import world.variables as variables
+import world.worldContents as worldContents
 
 # beginning
 print("Welcome to CONQUEST")
@@ -68,6 +68,7 @@ while variables.gameOver == False:
                 variables.currentEnemy = functions.getCurrentEnemy(enemyChoice)
             else:
                 functions.invalidInput()
+                print("Note: enemies cannot be fought twice.")
 
         elif variables.action == 'inv':
             functions.displayInventory()

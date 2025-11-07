@@ -1,15 +1,14 @@
-import classes
-import variables
+import item_files.classes as classes
 
 # weapons
 fists = classes.weapon('fists', 2, 99999, 2, 'weapon')
 bloodScythe = classes.weapon('blood-scythe', 5, 20, 5, 'weapon')
 thornCloak = classes.weapon('thorn-cloak', 7, 14, 6, 'weapon')
 stormChain = classes.weapon('storm-chain', 10, 11, 4, 'weapon')
+woodenSpear = classes.weapon('wooden-spear', 4, 5, 6, 'weapon')
 
 # one use weapons
 throwingDagger = classes.consumableWeapon('throwing-dagger', 10, 5, 'consumable-wpn')
-woodenSpear = classes.consumableWeapon('wooden-spear', 12, 6, 'consumable-wpn')
 fireStone = classes.consumableWeapon('firestone', 20, 8, 'consumable-wpn')
 iceBomb = classes.consumableWeapon('icebomb', 30, 10, 'consumable-wpn')
 
@@ -32,3 +31,6 @@ white_hall_main = [bloodScythe, thornCloak, stormChain]
 field_of_graves_grave = [bandages, apple]
 field_of_graves_crate = [throwingDagger, woodenSpear, carrot]
 field_of_graves_monument = [map]
+
+# dead forest
+dead_forest_trunk = [fireStone, bandages]

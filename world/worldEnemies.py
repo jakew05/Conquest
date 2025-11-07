@@ -1,14 +1,21 @@
-import classes
+import item_files.classes as classes
 
 skeleton = classes.enemy(20, 4, 2, 'skeleton')
 slime = classes.enemy(15, 3, 3, 'slime')
 
 wh = {
+    'main' : []
 }
 fog = {
-    'crate' : [skeleton]
+    'main' : [],
+    'crate' : [skeleton],
+    'grave' : [],
+    'monument' : []
 }
 df = {
+    'main' : [],
+    'pit' : [slime],
+    'trunk' : []
 }
 tr = {}
 br = {}

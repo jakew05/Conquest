@@ -1,4 +1,4 @@
-import items
+import item_files.items as items
 
 # sub world-contents-dictionaries
 wh = {
@@ -12,6 +12,8 @@ fog = {
 }
 df = {
     'main' : [],
+    'trunk' : items.dead_forest_trunk,
+    'pit' : []
 }
 tr = {}
 br = {}
